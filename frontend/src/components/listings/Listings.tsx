@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
 import { setListings } from '@/store/listingsSlice';
 import FavoritesModal from '../favorites/FavoritesModal';
+import { API_URL } from '@/utils/config';
 
 const Listings = () => {
   const dispatch = useDispatch();
@@ -17,7 +18,7 @@ const Listings = () => {
   const [isFavoritesModalOpen, setIsFavoritesModalOpen] = useState<boolean>(false);
 
   useEffect(() => {
-    fetch('http://localhost:3001/listings')
+    fetch(API_URL)
       .then((response) => response.json())
       .then((data) => {
         const mappedListings: Listing[] = data.map((listing: ListingData) => mapListing(listing));
@@ -81,7 +82,10 @@ const Listings = () => {
       )}
 
       {!isLoading && (
-        <div id='listings' className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4'>
+        <div
+          id='listings'
+          className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4'
+        >
           {filteredListings.map((listing) => (
             <ListingCard key={listing.id} listing={listing} />
           ))}

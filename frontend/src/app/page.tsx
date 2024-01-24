@@ -1,9 +1,9 @@
 'use client';
 
-import Listings from '@/components/listings/Listings';
 import { Provider } from 'react-redux';
 import { persistor, store } from '@/store/store';
 import { PersistGate } from 'redux-persist/integration/react';
+import Listings from '@/components/listings/Listings';
 import './globals.css';
 
 export default function Home() {
